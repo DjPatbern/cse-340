@@ -1,6 +1,144 @@
-/******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #fff;
+}
+/* General Reset */
+body {
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-bottom: 5px;
+}
+.siteName a {
+  text-decoration: none;
+  color: black;
+  font-size: large;
+  font-weight: bold;
+}
+#tools a {
+  text-decoration: none;
+  color: black;
+}
+
+#wrapper {
+  background: #fff;
+  max-width: 1100px;
+  padding: 4px;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  background: #222;
+  margin: 0;
+  padding: 10px 0;
+}
+
+nav ul li {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.hero-text {
+  max-width: 40%;
+  color: teal;
+}
+.hero img {
+  max-width: 400px;
+}
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background: teal;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Content Area */
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+}
+.upgrades,
+.reviews {
+  flex: 1;
+}
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.upgrade-grid a span {
+  display: block;
+  text-align: left;
+}
+
+.upgrade-grid a img {
+  padding: 10px;
+  background-color: teal;
+  border-radius: 4px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .reviews {
+    order: -1;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    background-image: url("/images/site/checkerboard.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  #wrapper {
+    margin: 24px auto;
+    border: 6px solid #12c7d1;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    margin: 0 auto;
+  }
+  nav ul li {
+    margin: 0 1rem;
+  }
 }
