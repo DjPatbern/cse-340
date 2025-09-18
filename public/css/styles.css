@@ -50,7 +50,7 @@ nav ul {
   padding: 10px 0;
 }
 
-nav ul li {
+nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -106,6 +106,119 @@ nav ul li {
   background-color: teal;
   border-radius: 4px;
 }
+
+/* ==============================
+   Classification Grid Styles
+   ============================== */
+
+/* Container */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  list-style: none;
+  margin: 0;
+}
+
+/* Each Vehicle Card */
+#inv-display li {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover Effect */
+#inv-display li:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Vehicle Image */
+#inv-display img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Name + Price Section */
+.namePrice {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.namePrice hr {
+  border: none;
+  border-top: 1px solid #e6e6e6;
+  margin: 0.5rem auto 1rem;
+  width: 60%;
+}
+
+/* Vehicle Title */
+.namePrice h2 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.4;
+}
+
+.namePrice h2 a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.25s ease;
+}
+
+.namePrice h2 a:hover {
+  color: #0077cc;
+}
+
+/* Price */
+.namePrice span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0077cc;
+  margin-top: 0.5rem;
+}
+
+/* Notice Message */
+.notice {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #555;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin: 2rem;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  #inv-display {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  #inv-display img {
+    height: 180px;
+  }
+
+  .namePrice h2 {
+    font-size: 1.05rem;
+  }
+
+  .namePrice span {
+    font-size: 1rem;
+  }
+}
+
+
 
 /* Responsive Layout */
 @media (max-width: 768px) {
