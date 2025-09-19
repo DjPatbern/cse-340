@@ -218,7 +218,74 @@ nav ul li a {
   }
 }
 
+.vehicle-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.vehicle-detail__image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.vehicle-title {
+  font-size: 1.75rem;
+  margin: 0 0 0.25rem 0;
+}
+.vehicle-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+.vehicle-meta {
+  color: #6b6b6b;
+  margin-bottom: 0.75rem;
+}
+.vehicle-description p {
+  line-height: 1.6;
+  max-width: 500px;
+}
+.vehicle-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0 0;
+}
+.vehicle-specs li {
+  margin-bottom: 0.35rem;
+}
 
+.error-page {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 1.5rem;
+  text-align: center;
+}
+.error-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.error-message {
+  color: #666;
+}
+.error-actions {
+  margin-top: 1.25rem;
+}
+a.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+@media (min-width: 900px) {
+  .vehicle-detail__grid {
+    grid-template-columns: 48% 52%;
+  }
+}
 
 /* Responsive Layout */
 @media (max-width: 768px) {

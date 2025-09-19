@@ -1,2 +1,9 @@
-<h1><%= title %></h1>
-<p><%= message %></p>
+
+  <main class="container error-page" role="main">
+   <h1 class="error-title"><%= title || "Something went wrong" %></h1>
+    <p class="error-message"><%= message || "An unexpected server error occurred. Please try again later." %></p>
+    <div class="error-actions">
+      <a href="/" class="btn">Return Home</a>
+    </div>
+  </main>
+
