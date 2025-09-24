@@ -187,16 +187,130 @@ nav ul li a {
   margin-top: 0.5rem;
 }
 
-/* Notice Message */
-.notice {
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #555;
-  background: #f9f9f9;
-  border-radius: 10px;
-  margin: 2rem;
+/* login styling */
+/* General reset */
+.auth-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ margin-top: 30px;
 }
+
+/* Container */
+.auth-container {
+  background-color: teal;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+  width: 380px;
+  text-align: center;
+}
+
+/* Headline */
+.auth-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: white;
+}
+
+/* Flash message */
+.flash-message {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form label {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+}
+
+.auth-form input {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.auth-form input::placeholder{
+  font-size: x-small;
+}
+
+/* Password wrapper */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pw-criteria{
+  text-align: left;
+  font-size: small;
+}
+.password-wrapper input {
+  flex: 1;
+}
+
+.toggle-password {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.toggle-password:hover {
+  background-color: white;
+  color: teal;
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: white;
+  color: teal;
+  font-weight: bold;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Footer link text */
+.footer-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-text a {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
 
 /* Responsive Tweaks */
 @media (max-width: 600px) {
@@ -279,6 +393,16 @@ a.btn {
   border-radius: 6px;
   text-decoration: none;
   border: 1px solid #ddd;
+}
+
+.notice{
+  color: rgb(185, 185, 31);
+  font-weight: bold;
+}
+
+.error{
+  color: red;
+  font-weight: bold;
 }
 
 @media (min-width: 900px) {
