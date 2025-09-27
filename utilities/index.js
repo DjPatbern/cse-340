@@ -114,4 +114,98 @@ Util.buildVehicleDetail = async function(vehicle) {
   return html
 }
 
+/**
+ * Build classification select list HTML
+ */
+Util.buildClassificationList = async function(classification_id = null) {
+  let data = await invModel.getClassifications()
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"`
+    if (classification_id != null && row.classification_id == classification_id) {
+      classificationList += " selected "
+    }
+    classificationList += `>${row.classification_name}</option>`
+  })
+  classificationList += "</select>"
+  return classificationList
+}
+
+/**
+ * Simple server-side validation middleware for adding a classification
+ * Ensures non-empty, no spaces/special chars
+ */
+Util.validateClassification = function(req, res, next) {
+  const { classification_name } = req.body
+  const errs = []
+  if (!classification_name || classification_name.trim().length === 0) {
+    errs.push("Classification name is required.")
+  } else if (!/^[A-Za-z0-9_-]+$/.test(classification_name)) {
+    errs.push("Classification may only contain letters, numbers, - and _. No spaces allowed.")
+  }
+
+  if (errs.length > 0) {
+    (async () => {
+      let nav = await module.exports.getNav ? await module.exports.getNav() : ""
+      req.flash("message", "Please fix the errors.")
+      return res.status(400).render("./inventory/add-classification", {
+        title: "Add Classification",
+        nav,
+        errors: errs,
+        classification_name,
+        message: req.flash("message"),
+      })
+    })().catch(next)
+    return
+  }
+
+  next()
+}
+
+/**
+ * Simple server-side validation middleware for add inventory (checks required fields)
+ */
+Util.validateInventory = function(req, res, next) {
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_price,
+    classification_id,
+    inv_miles,
+    inv_color
+  } = req.body
+
+  const errs = []
+  if (!inv_make || inv_make.trim() === "") errs.push("Make is required.")
+  if (!inv_model || inv_model.trim() === "") errs.push("Model is required.")
+  if (!inv_color || inv_color.trim() === "") errs.push("Color is required.")
+  if (!inv_year || isNaN(Number(inv_year))) errs.push("Year is required and must be a number.")
+  if (!inv_miles || isNaN(Number(inv_miles))) errs.push("Miles is required and must be a number.")
+  if (!inv_price || isNaN(Number(inv_price))) errs.push("Price is required and must be a number.")
+  if (!classification_id || classification_id === "") errs.push("Classification is required.")
+
+  if (errs.length > 0) {
+    (async () => {
+      const classificationList = await buildClassificationList(req.body.classification_id || null)
+      let nav = await module.exports.getNav ? await module.exports.getNav() : ""
+      req.session.invSticky = req.body
+      req.flash("message", "Please fix the errors below.")
+      return res.status(400).render("./inventory/add-inventory", {
+        title: "Add Inventory",
+        nav,
+        classificationList,
+        errors: errs,
+        inv: req.session.invSticky,
+        message: req.flash("message"),
+      })
+    })().catch(next)
+    return
+  }
+  next()
+}
+
+
 module.exports = Util

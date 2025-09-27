@@ -1,0 +1,34 @@
+<div class="inv-body">
+  <section class="inv-container">
+    <h1>Add Classification</h1>
+
+    <% if (message && message.length) { %>
+    <div class="notice"><%= message %></div>
+    <% } %> <% if (errors && errors.length) { %>
+    <div class="error">
+      <ul>
+        <% errors.forEach(function(err){ %>
+        <li><%= err %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+
+    <form action="/inv/add-classification" method="post" class="inv-form">
+      <label for="classification_name"
+        >Classification name (no spaces, only letters/numbers/-/_):</label
+      >
+      <input
+        type="text"
+        name="classification_name"
+        id="classification_name"
+        pattern="^[A-Za-z0-9_-]+$"
+        title="Only letters, numbers, dash and underscore. No spaces."
+        required
+        value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+      />
+      <button type="submit" class="submit-btn">Add Classification</button>
+      <a href="/inv/" class="cancel-btn">Cancel</a>
+    </form>
+  </section>
+</div>

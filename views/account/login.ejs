@@ -5,9 +5,10 @@
     <!-- Flash Message -->
 
     <div><%- messages() %></div>
+     
 
     <!-- Login Form -->
-    <form action="/account/login" method="post" class="auth-form">
+    <form action="/account/login" method="post" class="auth-form" id="loginForm">
       <label for="account_email">Email:</label>
       <input
         type="email"
@@ -15,6 +16,7 @@
         name="account_email"
         placeholder="Enter a valid email address"
         required
+        value="<%= locals.account_email %>"
       />
 
       <label for="account_password">Password:</label>

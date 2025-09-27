@@ -189,7 +189,8 @@ nav ul li a {
 
 /* login styling */
 /* General reset */
-.auth-body {
+.auth-body,
+.inv-body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: white;
@@ -201,7 +202,8 @@ nav ul li a {
 }
 
 /* Container */
-.auth-container {
+.auth-container,
+.inv-container {
   background-color: teal;
   padding: 2rem;
   border-radius: 12px;
@@ -211,7 +213,8 @@ nav ul li a {
 }
 
 /* Headline */
-.auth-container h1 {
+.auth-container h1,
+.inv-container h1 {
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
   color: white;
@@ -228,27 +231,31 @@ nav ul li a {
 }
 
 /* Form */
-.auth-form {
+.auth-form,
+.inv-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.auth-form label {
+.auth-form label,
+.inv-form label {
   text-align: left;
   font-size: 0.9rem;
   font-weight: bold;
   color: white;
 }
 
-.auth-form input {
+.auth-form input,
+.inv-form input, .inv-form select {
   padding: 0.6rem;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
 }
 
-.auth-form input::placeholder {
+.auth-form input::placeholder,
+.inv-form input::placeholder {
   color: white;
 }
 
@@ -296,6 +303,20 @@ nav ul li a {
 .submit-btn:hover {
   background-color: black;
   color: white;
+}
+
+/* Cancel button */
+
+.cancel-btn {
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cancel-btn:hover {
+  color: gainsboro;
 }
 
 /* Footer link text */
