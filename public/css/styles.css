@@ -331,6 +331,73 @@ nav ul li a {
   text-decoration: underline;
 }
 
+select, table {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  /* Classification dropdown */
+  #classificationList {
+    padding: 10px 12px;
+    border: 2px solid teal;
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  #classificationList:focus {
+    border-color: black;
+    box-shadow: 0 0 5px teal;
+  }
+
+  #classificationList option {
+    padding: 8px;
+    color: black;
+  }
+
+  /* Inventory table */
+  #inventoryDisplay {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  #inventoryDisplay thead {
+    background-color: teal;
+    color: white;
+  }
+
+  #inventoryDisplay th, 
+  #inventoryDisplay td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #inventoryDisplay tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #inventoryDisplay tr:hover {
+    background-color: rgba(0, 128, 128, 0.1);
+  }
+
+  /* Action links */
+  #inventoryDisplay a {
+    color: teal;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  #inventoryDisplay a:hover {
+    color: black;
+    text-decoration: underline;
+  }
+
 /* Responsive Tweaks */
 @media (max-width: 600px) {
   #inv-display {

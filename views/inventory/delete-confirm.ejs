@@ -1,0 +1,46 @@
+<div class="inv-body">
+    <section class="inv-container">
+        <h1><%- title %></h1>
+        
+       
+        
+        <% if (errors && errors.length) { %>
+          <div class="error">
+            <ul>
+              <% errors.forEach(function(err){ %>
+                <li><%= err %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+
+        <p>Confirm Deletion - The delete is permanent.</p>
+        
+        <form action="/inv/delete" method="post" class="inv-form">
+        
+          <label for="inv_make">Make</label>
+          <input type="text" name="inv_make" id="inv_make" required readonly value="<%= inv && inv.inv_make ? inv.inv_make : '' %>">
+        
+          <label for="inv_model">Model</label>
+          <input type="text" name="inv_model" id="inv_model" required readonly value="<%= inv && inv.inv_model ? inv.inv_model : '' %>">
+        
+          <label for="inv_year">Year</label>
+          <input type="number" name="inv_year" id="inv_year" required readonly value="<%= inv && inv.inv_year ? inv.inv_year : '' %>">
+        
+          <label for="inv_price">Price</label>
+          <input type="number" step="0.01" name="inv_price" id="inv_price" required readonly value="<%= inv && inv.inv_price ? inv.inv_price : '' %>">
+        
+          <button type="submit" class="submit-btn">Delete Vehicle</button>
+          <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } %>>
+          <a href="/inv/" class="cancel-btn">Cancel</a>
+        </form>
+
+    </section>
+</div>
+
+
+
+
+

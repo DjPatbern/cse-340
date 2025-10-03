@@ -1,5 +1,7 @@
 // utilities/index.js
-const invModel = require("../models/inventory-model")
+const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const Util = {}
 
 /* ************************
@@ -189,7 +191,7 @@ Util.validateInventory = function(req, res, next) {
 
   if (errs.length > 0) {
     (async () => {
-      const classificationList = await buildClassificationList(req.body.classification_id || null)
+      const classificationList = await Util.buildClassificationList(req.body.classification_id || null)
       let nav = await module.exports.getNav ? await module.exports.getNav() : ""
       req.session.invSticky = req.body
       req.flash("message", "Please fix the errors below.")
@@ -207,5 +209,85 @@ Util.validateInventory = function(req, res, next) {
   next()
 }
 
+/**
+ * Simple server-side validation middleware for edit inventory (checks required fields)
+ */
+Util.validateEditInventory = function(req, res, next) {
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_price,
+    classification_id,
+    inv_miles,
+    inv_color,
+    inv_id
+  } = req.body
+
+  const errs = []
+  if (!inv_make || inv_make.trim() === "") errs.push("Make is required.")
+  if (!inv_model || inv_model.trim() === "") errs.push("Model is required.")
+  if (!inv_color || inv_color.trim() === "") errs.push("Color is required.")
+  if (!inv_year || isNaN(Number(inv_year))) errs.push("Year is required and must be a number.")
+  if (!inv_miles || isNaN(Number(inv_miles))) errs.push("Miles is required and must be a number.")
+  if (!inv_price || isNaN(Number(inv_price))) errs.push("Price is required and must be a number.")
+  if (!classification_id || classification_id === "") errs.push("Classification is required.")
+
+  if (errs.length > 0) {
+    (async () => {
+      const classificationSelect = await Util.buildClassificationList(req.body.classification_id || null)
+      let nav = await module.exports.getNav ? await module.exports.getNav() : ""
+      req.session.invSticky = req.body
+      req.flash("message", "Please fix the errors below.");
+      const invName = `${inv_make} ${inv_model}`;
+      return res.status(400).render("./inventory/edit-inventory", {
+        title: "Edit" + invName,
+        nav,
+        classificationSelect,
+        errors: errs,
+        inv: req.session.invSticky,
+        message: req.flash("message"),
+        inv_id
+      })
+    })().catch(next)
+    return
+  }
+  next()
+}
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+ if (req.cookies.jwt) {
+  jwt.verify(
+   req.cookies.jwt,
+   process.env.ACCESS_TOKEN_SECRET,
+   function (err, accountData) {
+    if (err) {
+     req.flash("Please log in")
+     res.clearCookie("jwt")
+     return res.redirect("/account/login")
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
+   })
+ } else {
+  next()
+ }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
 module.exports = Util

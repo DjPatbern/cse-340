@@ -1,0 +1,64 @@
+<div class="inv-body">
+    <section class="inv-container">
+        <h1><%- title %></h1>
+        
+       
+        
+        <% if (errors && errors.length) { %>
+          <div class="error">
+            <ul>
+              <% errors.forEach(function(err){ %>
+                <li><%= err %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+        
+        <form action="/inv/update" method="post" class="inv-form" id="updateForm">
+          <label for="classificationList">Classification</label>
+          <div>
+            <%- classificationSelect %>
+          </div>
+        
+          <label for="inv_make">Make</label>
+          <input type="text" name="inv_make" id="inv_make" required value="<%= inv && inv.inv_make ? inv.inv_make : '' %>">
+        
+          <label for="inv_model">Model</label>
+          <input type="text" name="inv_model" id="inv_model" required value="<%= inv && inv.inv_model ? inv.inv_model : '' %>">
+
+          <label for="inv_model">Color</label>
+          <input type="text" name="inv_color" id="inv_color" required value="<%= inv && inv.inv_color ? inv.inv_color : '' %>">
+        
+          <label for="inv_year">Year</label>
+          <input type="number" name="inv_year" id="inv_year" required value="<%= inv && inv.inv_year ? inv.inv_year : '' %>">
+        
+          <label for="inv_description">Description</label>
+          <textarea name="inv_description" id="inv_description" required><%= inv && inv.inv_description ? inv.inv_description : '' %></textarea>
+        
+          <label for="inv_price">Price</label>
+          <input type="number" step="0.01" name="inv_price" id="inv_price" required value="<%= inv && inv.inv_price ? inv.inv_price : '' %>">
+
+          <label for="inv_price">Miles</label>
+          <input type="number" step="0.01" name="inv_miles" id="inv_miles" required value="<%= inv && inv.inv_miles ? inv.inv_miles : '' %>">
+        
+          <label for="inv_image">Image path</label>
+          <input type="text" name="inv_image" id="inv_image" required value="<%= inv && inv.inv_image ? inv.inv_image : '/images/vehicles/no-image.png' %>">
+        
+          <label for="inv_thumbnail">Thumbnail path</label>
+          <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= inv && inv.inv_thumbnail ? inv.inv_thumbnail : '/images/vehicles/no-image.png' %>">
+        
+          <button type="submit" disabled class="submit-btn">Update Vehicle</button>
+          <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+<% } %>>
+          <a href="/inv/" class="cancel-btn">Cancel</a>
+        </form>
+
+    </section>
+</div>
+
+<script src="../../js/inv-update.js"></script>
+
+
+
+

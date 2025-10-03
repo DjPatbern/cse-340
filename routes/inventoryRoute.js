@@ -15,4 +15,15 @@ router.get("/type/:classificationId", util.handleErrors(invController.buildByCla
 
 router.get("/detail/:invId", util.handleErrors(invController.buildByInventoryId));
 
+router.get("/getInventory/:classification_id", util.handleErrors(invController.getInventoryJSON))
+
+router.get("/edit/:invId", util.handleErrors(invController.buildEditInventory));
+
+router.post("/update/", util.handleErrors(util.validateEditInventory),  util.handleErrors(invController.handleEditInventory))
+
+router.get("/delete/:invId", util.handleErrors(invController.buildDeleteInventory));
+
+router.post("/delete/",  util.handleErrors(invController.handleDeleteInventory))
+
+
 module.exports = router;
