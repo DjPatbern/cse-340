@@ -1,0 +1,36 @@
+<main>
+  <h1><%= title %></h1>
+  <div><%- messages() %></div>
+
+  <!-- Account Update Form -->
+  <form action="/account/update" method="post" class="auth-form">
+    <label for="account_firstname">First Name:</label>
+    <input type="text" name="account_firstname" id="account_firstname" required
+      value="<%= account.account_firstname %>">
+
+    <label for="account_lastname">Last Name:</label>
+    <input type="text" name="account_lastname" id="account_lastname" required
+      value="<%= account.account_lastname %>">
+
+    <label for="account_email">Email:</label>
+    <input type="email" name="account_email" id="account_email" required
+      value="<%= account.account_email %>">
+
+    <input type="hidden" name="account_id" value="<%= account.account_id %>">
+
+    <button type="submit" class="acc-btn">Update Account</button>
+  </form>
+
+  <hr/>
+
+  <!-- Change Password Form -->
+  <form action="/account/update-password" method="post" class="auth-form">
+    <label for="account_password">New Password:</label>
+    <input type="password" name="account_password" id="account_password" required
+      placeholder="Enter new password">
+
+    <input type="hidden" name="account_id" value="<%= account.account_id %>">
+
+    <button type="submit" class="acc-btn">Change Password</button>
+  </form>
+</main>

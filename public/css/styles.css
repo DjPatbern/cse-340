@@ -315,6 +315,16 @@ nav ul li a {
   transition: background 0.3s;
 }
 
+.acc-btn{
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  background-color: teal;
+  border-radius: 10px;
+}
+
 .cancel-btn:hover {
   color: gainsboro;
 }

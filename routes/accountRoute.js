@@ -16,7 +16,11 @@ router.get(
 router.get("/register", util.handleErrors(accountController.buildRegister));
 
 // Route to build account management view
-router.get("/", util.checkLogin, util.handleErrors(accountController.buildAccountManagement));
+router.get(
+  "/",
+  util.checkLogin,
+  util.handleErrors(accountController.buildAccountManagement)
+);
 
 //Route to register new user
 router.post(
@@ -33,5 +37,35 @@ router.post(
   regValidate.checkLoginData,
   util.handleErrors(accountController.accountLogin)
 );
+
+// Update Account View
+router.get(
+  "/update/:account_id",
+  util.checkLogin,
+  util.handleErrors(accountController.buildUpdateAccount)
+);
+
+// Process account update
+router.post(
+  "/update",
+  regValidate.updateAccountRules(),
+  regValidate.checkUpdateData,
+  util.handleErrors(accountController.updateAccount)
+);
+
+// Process password update
+router.post(
+  "/update-password",
+  regValidate.updatePasswordRules(),
+  regValidate.checkPasswordData,
+  util.handleErrors(accountController.updatePassword)
+);
+
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt")
+  req.flash("notice", "You have successfully logged out.")
+  res.redirect("/")
+})
+
 
 module.exports = router;
