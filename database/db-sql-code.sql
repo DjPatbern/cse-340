@@ -244,3 +244,23 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+-- Table structure for table `likes`
+CREATE TABLE IF NOT EXISTS public.likes (
+  like_id SERIAL PRIMARY KEY,
+  account_id INT NOT NULL REFERENCES account(account_id) ON DELETE CASCADE,
+  inv_id INT NOT NULL REFERENCES inventory(inv_id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (account_id, inv_id)
+);
+
+
+-- Table structure for table `comments`
+CREATE TABLE IF NOT EXISTS public.comments (
+  comment_id SERIAL PRIMARY KEY,
+  account_id INT NOT NULL REFERENCES account(account_id) ON DELETE CASCADE,
+  inv_id INT NOT NULL REFERENCES inventory(inv_id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
