@@ -1,10 +1,47 @@
- <main class="container">
-    <header>
-      <h1><%= vehicle.inv_make %> <%= vehicle.inv_model %> <span>(<%= vehicle.inv_year %>)</span></h1>
-    </header>
+<main class="container">
+  <header>
+    <h1>
+      <%= vehicle.inv_make %> <%= vehicle.inv_model %>
+      <span>(<%= vehicle.inv_year %>)</span>
+    </h1>
+  </header>
 
-    <section id="vehicle-detail-wrapper">
-      <%- vehicleDetailHTML %>
-    </section>
-  </main>
+  <section id="vehicle-detail-wrapper"><%- vehicleDetailHTML %></section>
 
+  <div class="interaction-section" data-inv-id="<%= vehicle.inv_id %>">
+    <div id="like-area">
+      <button id="like-btn">Like</button>
+      <span id="like-count">0</span> likes
+    </div>
+
+    <div id="comment-area">
+      <h3>Comments</h3>
+      <div id="comment-list"></div>
+
+      <% if (locals.accountData) { %>
+      <form id="comment-form">
+        <textarea
+          name="content"
+          id="comment-input"
+          placeholder="Write a comment..."
+          required
+        ></textarea>
+        <button type="submit" id="post-comment-btn">Post Comment</button>
+      </form>
+      <input
+        type="hidden"
+        id="current-user-id"
+        value="<%= locals.accountData.account_id %>"
+      />
+      <% } else { %>
+      <p class="login-prompt">
+        You must
+        <a href="/account/login">log in</a>
+        to comment.
+      </p>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="../../js/interaction.js"></script>
+</main>

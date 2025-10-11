@@ -18,7 +18,8 @@ const utilities = require("./utilities")
 const session = require("express-session")
 const pool = require('./database');
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
+const interactionRoute = require("./routes/interactionRoute");
 
 /* ***********************
  * Middleware
@@ -70,7 +71,10 @@ app.use("/inv", inventoryRoute)
 app.use("/errors", errorRoute)
 
 // Account routes
-app.use("/account", accountRoute)
+app.use("/account", accountRoute);
+
+// Interaction routes
+app.use("/interaction", interactionRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
